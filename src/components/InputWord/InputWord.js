@@ -13,7 +13,10 @@ function InputWord({ inputValue, onChange, onSubmit }) {
         id="guess-input"
         type="text"
         value={inputValue}
-        onChange={(event) => onChange(event.target.value.toUpperCase())}
+        onChange={(event) => {
+          const value = event.target.value;
+          onChange( value );
+        }}
         maxLength={5}
       />
     </form>
