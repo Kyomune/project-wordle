@@ -14,7 +14,7 @@ function InputWord({ inputValue, onChange, onSubmit }) {
         type="text"
         value={inputValue}
         onChange={(event) => {
-          const value = event.target.value;
+          const value = event.target.value.toUpperCase();
           onChange( value );
         }}
         maxLength={5}

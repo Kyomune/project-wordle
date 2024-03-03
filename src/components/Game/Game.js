@@ -4,6 +4,7 @@ import { sample } from '../../utils';
 import { WORDS } from '../../data';
 import InputWord from '../InputWord';
 import GuessResults from '../GuessResults';
+import {NUM_OF_GUESSES_ALLOWED} from '../../constants'
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -19,6 +20,7 @@ function Game() {
   }
 
   const onInputSubmit = ( value ) => {
+    if ( NUM_OF_GUESSES_ALLOWED === Object.keys( results ).length ) return;
     if ( value.length !== 5 ) return;
     
     if ( Object.values( results ).includes( value ) ) return;
