@@ -4,11 +4,13 @@ import { sample } from '../../utils';
 import { WORDS } from '../../data';
 import InputWord from '../InputWord';
 import GuessResults from '../GuessResults';
-import {NUM_OF_GUESSES_ALLOWED} from '../../constants'
+import { NUM_OF_GUESSES_ALLOWED } from '../../constants'
+import { checkGuess } from "../../game-helpers"
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
+
 console.info({ answer });
 
 function Game() {
@@ -25,7 +27,8 @@ function Game() {
     
     if ( Object.values( results ).includes( value ) ) return;
 
-    const nextResults = { ...results, [ crypto.randomUUID() ]: value };
+    const guessResult = checkGuess( value, answer );
+    const nextResults = { ...results, [ crypto.randomUUID() ]: guessResult };
     setResults( nextResults );
     setWordValue( '' );
   }
